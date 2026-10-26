@@ -1,19 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fillViewport="true"
+    android:background="#F5F7FA">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HealthMate"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#183153" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your daily wellness tracker"
+            android:textSize="14sp"
+            android:textColor="#64748B"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Today's Summary"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#183153"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="STEPS WALKED"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#15803D"
+            android:padding="12dp" />
+
+        <TextView
+            android:id="@+id/tvSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7,850 steps"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#183153"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CALORIES BURNED"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#DC2626"
+            android:layout_marginTop="20dp"
+            android:padding="12dp" />
+
+        <TextView
+            android:id="@+id/tvCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="420 kcal"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#183153"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WATER INTAKE"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#0284C7"
+            android:layout_marginTop="20dp"
+            android:padding="12dp" />
+
+        <TextView
+            android:id="@+id/tvWater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2,000 ml"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#183153"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/btnAddRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Health Record"
+            android:layout_marginTop="35dp" />
+
+        <Button
+            android:id="@+id/btnViewRecords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Health Records"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>
