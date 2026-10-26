@@ -13,9 +13,12 @@ import java.util.Calendar
 import java.util.Locale
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.viewModels
+import com.example.healthmate.data.local.HealthRecord
+import com.example.healthmate.viewmodel.HealthRecordViewModel
 
 class AddRecordActivity : AppCompatActivity() {
-
+    private val viewModel: HealthRecordViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -121,11 +124,22 @@ class AddRecordActivity : AppCompatActivity() {
                         }
 
                         else -> {
+                            val record = HealthRecord(
+                                date = date,
+                                steps = steps,
+                                calories = calories,
+                                water = water
+                            )
+
+                            viewModel.insertRecord(record)
+
                             Toast.makeText(
                                 this,
-                                "Validation successful",
+                                "Record saved successfully",
                                 Toast.LENGTH_SHORT
                             ).show()
+
+                            finish()
                         }
                     }
                 }
