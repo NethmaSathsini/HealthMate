@@ -104,7 +104,6 @@ class AddRecordActivity : AppCompatActivity() {
                     etWater.error = "Please enter water intake"
                     etWater.requestFocus()
                 }
-
                 else -> {
                     val steps = stepsText.toIntOrNull()
                     val calories = caloriesText.toIntOrNull()
