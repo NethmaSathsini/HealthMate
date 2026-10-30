@@ -25,6 +25,14 @@ class AddRecordActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_record)
 
+        val editRecordId = intent.getIntExtra("recordId", -1)
+        val isEditMode = editRecordId != -1
+
+        val recordDate = intent.getStringExtra("recordDate")
+        val recordSteps = intent.getIntExtra("recordSteps", 0)
+        val recordCalories = intent.getIntExtra("recordCalories", 0)
+        val recordWater = intent.getIntExtra("recordWater", 0)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(
@@ -37,6 +45,9 @@ class AddRecordActivity : AppCompatActivity() {
         }
 
         val etDate = findViewById<EditText>(R.id.etDate)
+        if (isEditMode) {
+            etDate.setText(recordDate)
+        }
 
         etDate.setOnClickListener {
 
@@ -76,6 +87,16 @@ class AddRecordActivity : AppCompatActivity() {
         val etCalories = findViewById<EditText>(R.id.etCalories)
         val etWater = findViewById<EditText>(R.id.etWater)
         val btnSaveRecord = findViewById<Button>(R.id.btnSaveRecord)
+
+        if (isEditMode) {
+            btnSaveRecord.text = "Update Record"
+        }
+
+        if (isEditMode) {
+            etSteps.setText(recordSteps.toString())
+            etCalories.setText(recordCalories.toString())
+            etWater.setText(recordWater.toString())
+        }
 
         btnSaveRecord.setOnClickListener {
 
@@ -124,13 +145,18 @@ class AddRecordActivity : AppCompatActivity() {
 
                         else -> {
                             val record = HealthRecord(
+                                id = if (isEditMode) editRecordId else 0,
                                 date = date,
                                 steps = steps,
                                 calories = calories,
                                 water = water
                             )
 
-                            viewModel.insertRecord(record)
+                            if (isEditMode) {
+                                viewModel.updateRecord(record)
+                            } else {
+                                viewModel.insertRecord(record)
+                            }
 
                             Toast.makeText(
                                 this,
