@@ -7,9 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthmate.R
 import com.example.healthmate.data.local.HealthRecord
+import android.widget.Button
 
-class HealthRecordAdapter :
-    RecyclerView.Adapter<HealthRecordAdapter.RecordViewHolder>() {
+class HealthRecordAdapter(
+    private val onDeleteClick: (HealthRecord) -> Unit
+) : RecyclerView.Adapter<HealthRecordAdapter.RecordViewHolder>() {
 
     private var records = listOf<HealthRecord>()
 
@@ -27,6 +29,9 @@ class HealthRecordAdapter :
 
         val tvWater: TextView =
             itemView.findViewById(R.id.tvRecordWater)
+
+        val btnDelete: Button =
+            itemView.findViewById(R.id.btnDeleteRecord)
     }
 
     override fun onCreateViewHolder(
@@ -50,6 +55,9 @@ class HealthRecordAdapter :
         holder.tvSteps.text = "Steps: ${record.steps}"
         holder.tvCalories.text = "Calories: ${record.calories} kcal"
         holder.tvWater.text = "Water: ${record.water} ml"
+        holder.btnDelete.setOnClickListener {
+            onDeleteClick(record)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -61,3 +69,4 @@ class HealthRecordAdapter :
         notifyDataSetChanged()
     }
 }
+

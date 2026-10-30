@@ -18,6 +18,7 @@ import com.example.healthmate.R
 import com.example.healthmate.ui.adapter.HealthRecordAdapter
 import com.example.healthmate.viewmodel.HealthRecordViewModel
 import kotlinx.coroutines.launch
+import androidx.appcompat.app.AlertDialog
 
 class ViewRecordsActivity : AppCompatActivity() {
 
@@ -43,7 +44,17 @@ class ViewRecordsActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewRecords)
         val tvEmptyRecords = findViewById<TextView>(R.id.tvEmptyRecords)
 
-        val adapter = HealthRecordAdapter()
+        val adapter = HealthRecordAdapter { record ->
+
+            AlertDialog.Builder(this)
+                .setTitle("Delete Record")
+                .setMessage("Are you sure you want to delete this record?")
+                .setPositiveButton("Delete") { _, _ ->
+                    viewModel.deleteRecord(record)
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
