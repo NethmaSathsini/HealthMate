@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.healthmate.ui.AddRecordActivity
+import com.example.healthmate.ui.ViewRecordsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,11 +32,19 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
         // Open Add Health Record screen
         val btnAddRecord = findViewById<Button>(R.id.btnAddRecord)
 
         btnAddRecord.setOnClickListener {
             val intent = Intent(this, AddRecordActivity::class.java)
+            startActivity(intent)
+        }
+        // Open View Health Records screen
+        val btnViewRecords = findViewById<Button>(R.id.btnViewRecords)
+
+        btnViewRecords.setOnClickListener {
+            val intent = Intent(this, ViewRecordsActivity::class.java)
             startActivity(intent)
         }
     }

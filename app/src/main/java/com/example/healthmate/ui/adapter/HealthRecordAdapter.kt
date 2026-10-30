@@ -1,4 +1,3 @@
-
 package com.example.healthmate.ui.adapter
 
 import android.view.LayoutInflater
