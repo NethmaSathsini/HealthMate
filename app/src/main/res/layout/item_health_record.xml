@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="#F2F6FA">
+
+    <TextView
+        android:id="@+id/tvRecordDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date: 2026-10-26"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvRecordSteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Steps: 5000"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvRecordCalories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calories: 250 kcal"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvRecordWater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Water: 1500 ml"
+        android:textSize="16sp"/>
+
+</LinearLayout>
