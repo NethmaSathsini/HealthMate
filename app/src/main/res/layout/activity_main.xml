@@ -10,14 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp">
 
         <!-- App Title -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="HealthMate"
-            android:textSize="28sp"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#183153" />
 
@@ -25,20 +26,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your daily wellness tracker"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textColor="#64748B"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="2dp" />
 
         <!-- Today's Summary -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Today's Summary"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#183153"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp" />
 
         <!-- Steps Card -->
         <LinearLayout
@@ -46,8 +47,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bg_summary_card"
-            android:padding="18dp"
-            android:layout_marginBottom="14dp">
+            android:padding="13dp"
+            android:layout_marginBottom="9dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,8 +57,8 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:src="@drawable/ic_steps"
                     android:contentDescription="@string/steps_icon_description" />
 
@@ -65,10 +66,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="STEPS WALKED"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="#15803D"
-                    android:layout_marginStart="10dp" />
+                    android:layout_marginStart="9dp" />
 
             </LinearLayout>
 
@@ -77,10 +78,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0 steps"
-                android:textSize="26sp"
+                android:textSize="23sp"
                 android:textStyle="bold"
                 android:textColor="#183153"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="6dp" />
 
         </LinearLayout>
 
@@ -90,8 +91,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bg_summary_card"
-            android:padding="18dp"
-            android:layout_marginBottom="14dp">
+            android:padding="13dp"
+            android:layout_marginBottom="9dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,8 +101,8 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:src="@drawable/ic_calories"
                     android:contentDescription="@string/calories_icon_description" />
 
@@ -109,10 +110,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CALORIES BURNED"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="#DC2626"
-                    android:layout_marginStart="10dp" />
+                    android:layout_marginStart="9dp" />
 
             </LinearLayout>
 
@@ -121,10 +122,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0 kcal"
-                android:textSize="26sp"
+                android:textSize="23sp"
                 android:textStyle="bold"
                 android:textColor="#183153"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="6dp" />
 
         </LinearLayout>
 
@@ -134,8 +135,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bg_summary_card"
-            android:padding="18dp"
-            android:layout_marginBottom="14dp">
+            android:padding="13dp"
+            android:layout_marginBottom="9dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,8 +145,8 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:src="@drawable/ic_water"
                     android:contentDescription="@string/water_icon_description" />
 
@@ -153,10 +154,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="WATER INTAKE"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="#0284C7"
-                    android:layout_marginStart="10dp" />
+                    android:layout_marginStart="9dp" />
 
             </LinearLayout>
 
@@ -165,10 +166,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0 ml"
-                android:textSize="26sp"
+                android:textSize="23sp"
                 android:textStyle="bold"
                 android:textColor="#183153"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="6dp" />
 
         </LinearLayout>
 
@@ -179,7 +180,7 @@
             android:layout_height="wrap_content"
             android:text="Add Health Record"
             android:textAllCaps="false"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp" />
 
         <!-- View Records Button -->
         <Button
@@ -188,8 +189,7 @@
             android:layout_height="wrap_content"
             android:text="View Health Records"
             android:textAllCaps="false"
-            android:layout_marginTop="12dp" />
-
+            android:layout_marginTop="5dp" />
 
         <!-- My Daily Goals Button -->
         <Button
@@ -198,8 +198,7 @@
             android:layout_height="wrap_content"
             android:text="My Daily Goals"
             android:textAllCaps="false"
-            android:layout_marginTop="12dp" />
-
+            android:layout_marginTop="5dp" />
 
     </LinearLayout>
 
