@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- Page Title -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
             android:textColor="#64748B"
             android:layout_marginBottom="28dp" />
 
+        <!-- Date -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,14 +42,23 @@
         <EditText
             android:id="@+id/etDate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:hint="Select date"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:drawablePadding="12dp"
+            android:textColor="#183153"
+            android:textColorHint="#64748B"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/bg_input_field"
             android:inputType="none"
             android:focusable="false"
             android:clickable="true"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp" />
 
+        <!-- Steps -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,12 +70,19 @@
         <EditText
             android:id="@+id/etSteps"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:hint="Enter steps"
+            android:textColor="#183153"
+            android:textColorHint="#64748B"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/bg_input_field"
             android:inputType="number"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp" />
 
+        <!-- Calories -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,12 +94,19 @@
         <EditText
             android:id="@+id/etCalories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:hint="Enter calories (kcal)"
+            android:textColor="#183153"
+            android:textColorHint="#64748B"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/bg_input_field"
             android:inputType="number"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp" />
 
+        <!-- Water -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,17 +118,25 @@
         <EditText
             android:id="@+id/etWater"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:hint="Enter water intake"
+            android:textColor="#183153"
+            android:textColorHint="#64748B"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/bg_input_field"
             android:inputType="number"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="30dp" />
 
+        <!-- Save Button -->
         <Button
             android:id="@+id/btnSaveRecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Record" />
+            android:text="Save Record"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
