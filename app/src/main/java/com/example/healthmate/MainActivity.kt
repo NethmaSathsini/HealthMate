@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.healthmate.ui.AddRecordActivity
 import com.example.healthmate.ui.ViewRecordsActivity
+import com.example.healthmate.ui.DailyGoalsActivity
 import com.example.healthmate.viewmodel.HealthRecordViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -92,5 +93,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ViewRecordsActivity::class.java)
             startActivity(intent)
         }
+
+        // Open My Daily Goals screen
+        val btnDailyGoals = findViewById<Button>(R.id.btnDailyGoals)
+
+        btnDailyGoals.setOnClickListener {
+            val intent = Intent(this, DailyGoalsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

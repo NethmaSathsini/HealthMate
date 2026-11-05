@@ -190,6 +190,17 @@
             android:textAllCaps="false"
             android:layout_marginTop="12dp" />
 
+
+        <!-- My Daily Goals Button -->
+        <Button
+            android:id="@+id/btnDailyGoals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Daily Goals"
+            android:textAllCaps="false"
+            android:layout_marginTop="12dp" />
+
+
     </LinearLayout>
 
 </ScrollView>
