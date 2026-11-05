@@ -1,51 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F5F7FA"
     android:padding="20dp">
 
+    <!-- Page Title -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My Health Records"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:textStyle="bold"
+        android:textColor="#183153"
         android:gravity="center"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="8dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View and manage your daily activities"
+        android:textSize="14sp"
+        android:textColor="#64748B"
+        android:gravity="center"
+        android:layout_marginBottom="14dp" />
+
+    <!-- Search Label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search by Date"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#183153"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Date Search -->
+    <EditText
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/etSearchDate"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Select date to search"
+        android:textColor="#183153"
+        android:textColorHint="#64748B"
+        android:textSize="16sp"
+        android:background="@drawable/bg_input_field"
+        android:drawableEnd="@drawable/ic_calendar"
+        android:drawablePadding="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Clear Search -->
+    <Button
+        android:id="@+id/btnClearSearch"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="Show All Records"
+        android:textAllCaps="false"
+        android:layout_marginBottom="14dp" />
+
+    <!-- Empty Records Message -->
     <TextView
         android:id="@+id/tvEmptyRecords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="No health records available"
         android:textSize="16sp"
+        android:textColor="#64748B"
         android:gravity="center"
-        android:visibility="gone"/>
+        android:padding="20dp"
+        android:visibility="gone" />
 
-    <EditText
-        android:id="@+id/etSearchDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Select date to search"
-        android:focusable="false"
-        android:clickable="true"
-        android:inputType="none"
-        android:padding="12dp" />
-
-    <Button
-        android:id="@+id/btnClearSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show All Records"
-        android:layout_marginBottom="12dp" />
-
+    <!-- Records List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRecords"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="12dp" />
 
 </LinearLayout>
