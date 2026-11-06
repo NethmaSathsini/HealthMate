@@ -18,9 +18,6 @@ import com.example.healthmate.ui.ViewRecordsActivity
 import com.example.healthmate.ui.DailyGoalsActivity
 import com.example.healthmate.viewmodel.HealthRecordViewModel
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,24 +53,12 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.allRecords.collect { records ->
+                viewModel.todaySummary.collect { summary ->
 
-                    val today = SimpleDateFormat(
-                        "yyyy-MM-dd",
-                        Locale.US
-                    ).format(Date())
+                    tvSteps.text = "${summary.steps} steps"
+                    tvCalories.text = "${summary.calories} kcal"
+                    tvWater.text = "${summary.water} ml"
 
-                    val todayRecords = records.filter {
-                        it.date == today
-                    }
-
-                    val totalSteps = todayRecords.sumOf { it.steps }
-                    val totalCalories = todayRecords.sumOf { it.calories }
-                    val totalWater = todayRecords.sumOf { it.water }
-
-                    tvSteps.text = "$totalSteps steps"
-                    tvCalories.text = "$totalCalories kcal"
-                    tvWater.text = "$totalWater ml"
                 }
             }
         }

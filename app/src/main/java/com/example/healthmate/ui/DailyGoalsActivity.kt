@@ -14,9 +14,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.healthmate.R
 import com.example.healthmate.viewmodel.HealthRecordViewModel
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import android.widget.ProgressBar
 import android.text.InputType
 import android.widget.EditText
@@ -151,18 +148,7 @@ class DailyGoalsActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.allRecords.collect { records ->
 
-                    val today = SimpleDateFormat(
-                        "yyyy-MM-dd",
-                        Locale.US
-                    ).format(Date())
 
-                    val todayRecords = records.filter {
-                        it.date == today
-                    }
-
-                    // Default daily goals
-
-                    // Load saved daily goals
                     val preferences = getSharedPreferences(
                         "HealthMateGoals",
                         MODE_PRIVATE
@@ -174,17 +160,17 @@ class DailyGoalsActivity : AppCompatActivity() {
                     val waterGoal = preferences.getInt("waterGoal", 2000)
                         .coerceAtLeast(1)
 
+                    val summary = viewModel.calculateDailyGoalsSummary(
+                        records,
+                        stepGoal,
+                        waterGoal
+                    )
 
-                    // Calculate today's totals
-                    val totalSteps = todayRecords.sumOf { it.steps }
-                    val totalWater = todayRecords.sumOf { it.water }
+                    val totalSteps = summary.totalSteps
+                    val totalWater = summary.totalWater
+                    val stepPercentage = summary.stepPercentage
+                    val waterPercentage = summary.waterPercentage
 
-                    // Calculate progress percentages
-                    val stepPercentage = (totalSteps.toLong() * 100 / stepGoal)
-                        .coerceIn(0L, 100L).toInt()
-
-                    val waterPercentage = (totalWater.toLong() * 100 / waterGoal)
-                        .coerceIn(0L, 100L).toInt()
 
                     // Update Step Goal
                     tvStepGoalProgress.text = "$stepPercentage%"
@@ -196,7 +182,7 @@ class DailyGoalsActivity : AppCompatActivity() {
                     progressWaterGoal.progress = waterPercentage
                     tvWaterGoalDetails.text = "$totalWater / $waterGoal ml"
 
-                    val recordCount = todayRecords.size
+                    val recordCount = summary.recordCount
 
                     tvTodayRecords.text =
                         if (recordCount == 1) {
