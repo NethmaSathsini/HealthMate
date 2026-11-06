@@ -45,11 +45,16 @@ class ViewRecordsActivity : AppCompatActivity() {
                 WindowInsetsCompat.Type.systemBars()
             )
 
+            val density = resources.displayMetrics.density
+            val topSpacing = (24 * density).toInt()
+            val horizontalSpacing = (20 * density).toInt()
+            val bottomSpacing = (20 * density).toInt()
+
             v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
+                systemBars.left + horizontalSpacing,
+                systemBars.top + topSpacing,
+                systemBars.right + horizontalSpacing,
+                systemBars.bottom + bottomSpacing
             )
 
             insets
