@@ -3,28 +3,31 @@ package com.example.healthmate.ui
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.healthmate.R
-import java.util.Calendar
-import java.util.Locale
-import android.widget.Button
-import android.widget.Toast
-import androidx.activity.viewModels
 import com.example.healthmate.data.local.HealthRecord
 import com.example.healthmate.viewmodel.HealthRecordViewModel
+import java.util.Calendar
+import java.util.Locale
 
 class AddRecordActivity : AppCompatActivity() {
+
     private val viewModel: HealthRecordViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_record)
 
+        // Check whether this is Add or Edit mode
         val editRecordId = intent.getIntExtra("recordId", -1)
         val isEditMode = editRecordId != -1
 
@@ -33,22 +36,43 @@ class AddRecordActivity : AppCompatActivity() {
         val recordCalories = intent.getIntExtra("recordCalories", 0)
         val recordWater = intent.getIntExtra("recordWater", 0)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        // Handle system bar spacing
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById(R.id.main)
+        ) { v, insets ->
+
+            val systemBars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+            )
+
             v.setPadding(
                 systemBars.left,
                 systemBars.top,
                 systemBars.right,
                 systemBars.bottom
             )
+
             insets
         }
 
+        // Get input fields
         val etDate = findViewById<EditText>(R.id.etDate)
+        val etSteps = findViewById<EditText>(R.id.etSteps)
+        val etCalories = findViewById<EditText>(R.id.etCalories)
+        val etWater = findViewById<EditText>(R.id.etWater)
+        val btnSaveRecord = findViewById<Button>(R.id.btnSaveRecord)
+
+        // Fill existing values when editing
         if (isEditMode) {
             etDate.setText(recordDate)
+            etSteps.setText(recordSteps.toString())
+            etCalories.setText(recordCalories.toString())
+            etWater.setText(recordWater.toString())
+
+            btnSaveRecord.text = "Update Record"
         }
 
+        // Open DatePicker
         etDate.setOnClickListener {
 
             val calendar = Calendar.getInstance()
@@ -77,27 +101,13 @@ class AddRecordActivity : AppCompatActivity() {
             )
 
             // Prevent selecting future dates
-            datePicker.datePicker.maxDate = System.currentTimeMillis()
+            datePicker.datePicker.maxDate =
+                System.currentTimeMillis()
 
             datePicker.show()
         }
 
-        // Get input fields
-        val etSteps = findViewById<EditText>(R.id.etSteps)
-        val etCalories = findViewById<EditText>(R.id.etCalories)
-        val etWater = findViewById<EditText>(R.id.etWater)
-        val btnSaveRecord = findViewById<Button>(R.id.btnSaveRecord)
-
-        if (isEditMode) {
-            btnSaveRecord.text = "Update Record"
-        }
-
-        if (isEditMode) {
-            etSteps.setText(recordSteps.toString())
-            etCalories.setText(recordCalories.toString())
-            etWater.setText(recordWater.toString())
-        }
-
+        // Save or Update record
         btnSaveRecord.setOnClickListener {
 
             val date = etDate.text.toString().trim()
@@ -108,7 +118,12 @@ class AddRecordActivity : AppCompatActivity() {
             when {
                 date.isEmpty() -> {
                     etDate.error = "Please select a date"
-                    Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(
+                        this,
+                        "Please select a date",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 stepsText.isEmpty() -> {
@@ -125,7 +140,9 @@ class AddRecordActivity : AppCompatActivity() {
                     etWater.error = "Please enter water intake"
                     etWater.requestFocus()
                 }
+
                 else -> {
+
                     val steps = stepsText.toIntOrNull()
                     val calories = caloriesText.toIntOrNull()
                     val water = waterText.toIntOrNull()
@@ -144,6 +161,7 @@ class AddRecordActivity : AppCompatActivity() {
                         }
 
                         else -> {
+
                             val record = HealthRecord(
                                 id = if (isEditMode) editRecordId else 0,
                                 date = date,
@@ -152,15 +170,23 @@ class AddRecordActivity : AppCompatActivity() {
                                 water = water
                             )
 
+                            // Database operations through ViewModel
                             if (isEditMode) {
                                 viewModel.updateRecord(record)
                             } else {
                                 viewModel.insertRecord(record)
                             }
 
+                            // Show the appropriate message
+                            val message = if (isEditMode) {
+                                "Record update requested"
+                            } else {
+                                "Record save requested"
+                            }
+
                             Toast.makeText(
                                 this,
-                                "Record saved successfully",
+                                message,
                                 Toast.LENGTH_SHORT
                             ).show()
 
@@ -170,6 +196,5 @@ class AddRecordActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }

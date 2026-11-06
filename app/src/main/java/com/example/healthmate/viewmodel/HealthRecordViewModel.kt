@@ -7,6 +7,8 @@ import com.example.healthmate.data.local.HealthMateDatabase
 import com.example.healthmate.data.local.HealthRecord
 import com.example.healthmate.data.repository.HealthRecordRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -88,7 +90,24 @@ class HealthRecordViewModel(application: Application) :
         )
     }
 
+    private val selectedSearchDate = MutableStateFlow<String?>(null)
 
+    val searchDate: kotlinx.coroutines.flow.StateFlow<String?> =
+        selectedSearchDate
+
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    val filteredRecords: Flow<List<HealthRecord>> =
+        selectedSearchDate.flatMapLatest { date ->
+            if (date == null) {
+                allRecords
+            } else {
+                repository.getRecordsByDate(date)
+            }
+        }
+
+    fun setSearchDate(date: String?) {
+        selectedSearchDate.value = date
+    }
 
     fun insertRecord(record: HealthRecord) {
         viewModelScope.launch {
