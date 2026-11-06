@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.healthmate.data.local.HealthMateDatabase
 import com.example.healthmate.data.local.HealthRecord
 import com.example.healthmate.data.repository.HealthRecordRepository
+import com.example.healthmate.data.repository.GoalsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -19,6 +20,7 @@ class HealthRecordViewModel(application: Application) :
     AndroidViewModel(application) {
 
     private val repository: HealthRecordRepository
+    private val goalsRepository = GoalsRepository(application)
 
     val allRecords: Flow<List<HealthRecord>>
 
@@ -107,6 +109,18 @@ class HealthRecordViewModel(application: Application) :
 
     fun setSearchDate(date: String?) {
         selectedSearchDate.value = date
+    }
+
+    fun getStepGoal(): Int {
+        return goalsRepository.getStepGoal()
+    }
+
+    fun getWaterGoal(): Int {
+        return goalsRepository.getWaterGoal()
+    }
+
+    fun saveDailyGoals(stepGoal: Int, waterGoal: Int): Boolean {
+        return goalsRepository.saveGoals(stepGoal, waterGoal)
     }
 
     fun insertRecord(record: HealthRecord) {
